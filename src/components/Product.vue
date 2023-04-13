@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="checkbox">
-      <input type="checkbox" class="delete-checkbox" v-model="isChecked" />
+      <input type="checkbox" class="delete-checkbox" />
       <input type="hidden" class="hidden" :value="id" />
     </div>
     <p class="sku">SKU: {{ this.sku }}</p>
@@ -24,16 +24,6 @@ export default {
     return {
       isPickedToDelete: false,
     };
-  },
-  watch: {
-    isChecked(value) {
-      const hiddenInput = document.querySelector(".hidden");
-      if (value) {
-        hiddenInput.classList.add("ready_to_delete");
-      } else {
-        hiddenInput.classList.remove("ready_to_delete");
-      }
-    },
   },
 };
 </script>

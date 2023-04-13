@@ -91,21 +91,16 @@ export default {
     addToDatabase(data) {
       this.showIncorrectDataNotification = false;
       this.showDuplicatedSku = false;
-      axios.post(
-        "https://scandiweb-test-stanislaw-bozych.000webhostapp.com/dbHandlerer.php",
-        {
-          request: 2,
-          sku: data.sku,
-          name: data.name,
-          price: data.price,
-          selectedOption: data.selectedOption,
-          size: data.size,
-          weight: data.weight,
-          height: data.height,
-          width: data.width,
-          length: data.length,
-        }
-      );
+      axios.post("https://scandiweb-test-stanislaw-bozych.000webhostapp.com/dbHandlerer.php", {
+        request: 2,
+        sku: data.sku,
+        name: data.name,
+        price: data.price,
+        selectedOption: data.selectedOption,
+        size: data.size,
+        weight: data.weight,
+        dimensions: data.height+"X"+data.width+"X"+data.length
+      });
       this.$router.push("/");
     },
     submit() {
@@ -135,17 +130,15 @@ export default {
           } else this.showIncorrectDataNotification = true;
         }
       } else this.showIncorrectDataNotification = true;
+      this.showDuplicatedSku = false;
     },
     async checkSku(sku) {
       let doesSkuExist = false;
       await axios
-        .post(
-          "https://scandiweb-test-stanislaw-bozych.000webhostapp.com/dbHandlerer.php",
-          {
-            request: 4,
-            sku: sku,
-          }
-        )
+        .post("https://scandiweb-test-stanislaw-bozych.000webhostapp.com/dbHandlerer.php", {
+          request: 4,
+          sku: sku,
+        })
         .then(function (response) {
           if (response.data[0] == 0) {
             doesSkuExist = false;
@@ -157,6 +150,7 @@ export default {
         this.submit();
       } else {
         this.showDuplicatedSku = true;
+        this.showIncorrectDataNotification = false;
       }
     },
   },

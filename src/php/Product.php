@@ -10,32 +10,28 @@
             $this->name = $name;
             $this->price = $price;
         }
-
-        function set_sku($sku){
+        public function set_sku($sku){
             $this->sku = $sku;
         }
-        function get_sku(){
+        public function get_sku(){
             return $this->sku;
         }
-        function set_name($name){
+        public function set_name($name){
             $this->name = $name;
         }
-        function get_name(){
+        public function get_name(){
             return $this->name;
         }
-        function set_price($price){
+        public function set_price($price){
             $this->price = $price;
         }
-        function get_price(){
+        public function get_price(){
             return $this->price;
         }
-        function set_attr($attr){
+        public function set_attr($attr){
             $this->attr = $attr;
         }
-        function set_furni_attr($height, $width, $length){
-            $this->attr = $height.'x'.$width.'x'.$length;
-        }
-        function get_attr(){
+        public function get_attr(){
             return $this->attr;
         }
     }

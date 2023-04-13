@@ -80,7 +80,6 @@ export default {
           i++;
         }
       });
-      console.log(checkedInputValues);
       await axios
         .post(
           "https://scandiweb-test-stanislaw-bozych.000webhostapp.com/dbHandlerer.php",
@@ -90,8 +89,12 @@ export default {
           }
         )
         .then((response) => {
-          if (response.data[0] == "Success") {
+          if (response.data[0]) {
             this.selectFromDatabase();
+            const checkboxesAfter = document.querySelectorAll('input[type="checkbox"]');
+            for(let j = 0; j < checkboxesAfter.length; j++){
+              checkboxesAfter[j].checked = false;
+            }
           }
         });
     },
